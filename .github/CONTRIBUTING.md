@@ -1,4 +1,4 @@
-# Contributing to Soenneker.Extensions.ParameterInfo
+﻿# Contributing to Soenneker.Extensions.ParameterInfo
 
 We're excited that you're interested in contributing!
 
