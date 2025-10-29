@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.Diagnostics.Contracts;
 
 namespace Soenneker.Extensions.ParameterInfo;
 
@@ -33,6 +34,7 @@ public static class ParameterInfoExtension
     /// }
     /// </code>
     /// </example>
+    [Pure]
     public static Type[] ToTypes(this System.Reflection.ParameterInfo[] parameterInfos)
     {
         int length = parameterInfos.Length;
@@ -45,7 +47,7 @@ public static class ParameterInfoExtension
         Type[] rentedArray = arrayPool.Rent(length);
 
         // Populate the rented array
-        for (int i = 0; i < length; i++)
+        for (var i = 0; i < length; i++)
         {
             rentedArray[i] = parameterInfos[i].ParameterType;
         }
