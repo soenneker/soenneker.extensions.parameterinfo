@@ -42,22 +42,13 @@ public static class ParameterInfoExtension
         if (length == 0)
             return [];
 
-        // Rent an array from the pool
-        ArrayPool<Type> arrayPool = ArrayPool<Type>.Shared;
-        Type[] rentedArray = arrayPool.Rent(length);
+        // Create array directly - no need for ArrayPool since we're returning it
+        var result = new Type[length];
 
-        // Populate the rented array
         for (var i = 0; i < length; i++)
         {
-            rentedArray[i] = parameterInfos[i].ParameterType;
+            result[i] = parameterInfos[i].ParameterType;
         }
-
-        // Create the final array to return
-        var result = new Type[length];
-        Array.Copy(rentedArray, result, length);
-
-        // Return the rented array to the pool immediately
-        arrayPool.Return(rentedArray, clearArray: true);
 
         return result;
     }
