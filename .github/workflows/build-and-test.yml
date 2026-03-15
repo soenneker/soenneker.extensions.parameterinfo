@@ -40,5 +40,11 @@ jobs:
       - name: Test
         run: dotnet test test/Soenneker.Extensions.ParameterInfo.Tests/Soenneker.Extensions.ParameterInfo.Tests.csproj --configuration Release --no-build --no-restore --verbosity minimal
 
+      - name: Restore library
+        run: dotnet restore src/Soenneker.Extensions.ParameterInfo/Soenneker.Extensions.ParameterInfo.csproj --verbosity minimal
+
+      - name: Build library
+        run: dotnet build src/Soenneker.Extensions.ParameterInfo/Soenneker.Extensions.ParameterInfo.csproj --configuration Release --no-restore --verbosity minimal
+
       - name: Pack
         run: dotnet pack src/Soenneker.Extensions.ParameterInfo/Soenneker.Extensions.ParameterInfo.csproj --configuration Release --no-build --no-restore --output . --verbosity minimal
