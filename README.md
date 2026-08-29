@@ -4,7 +4,7 @@
 [![](https://img.shields.io/github/actions/workflow/status/soenneker/soenneker.extensions.parameterinfo/codeql.yml?label=CodeQL&style=for-the-badge)](https://github.com/soenneker/soenneker.extensions.parameterinfo/actions/workflows/codeql.yml)
 
 # ![](https://user-images.githubusercontent.com/4441470/224455560-91ed3ee7-f510-4041-a8d2-3fc093025112.png) Soenneker.Extensions.ParameterInfo
-A collection of helpful ParameterInfo (Reflection) extension methods.
+Projects reflected method parameters to their declared CLR types.
 
 ## Installation
 
@@ -12,15 +12,14 @@ A collection of helpful ParameterInfo (Reflection) extension methods.
 dotnet add package Soenneker.Extensions.ParameterInfo
 ```
 
-## Quick start
+## Usage
 
 ```csharp
 using Soenneker.Extensions.ParameterInfo;
 
-// Given an existing System.Reflection.ParameterInfo[] named parameterInfos:
-var result = parameterInfos.ToTypes();
+MethodInfo method = typeof(string).GetMethod(nameof(string.StartsWith), [typeof(string)])!;
+Type[] parameterTypes = method.GetParameters().ToTypes();
+// [typeof(string)]
 ```
 
-## Common operations
-
-- `ToTypes()` - Converts an array of `ParameterInfo` into an array of their corresponding `Type` objects.
+`ToTypes()` preserves parameter order and returns a newly allocated array containing each `ParameterType`. An empty parameter array produces an empty type array. The source array and its elements must be non-null.
