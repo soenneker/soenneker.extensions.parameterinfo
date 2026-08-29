@@ -13,6 +13,7 @@ public static class ParameterInfoExtension
     /// <summary>
     /// Converts an array of <see cref="ParameterInfo"/> into an array of their corresponding <see cref="Type"/> objects.
     /// </summary>
+    /// <returns>Converts an array of <see cref="ParameterInfo"/> into an array of their corresponding <see cref="Type"/> objects.</returns>
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Type[] ToTypes(this System.Reflection.ParameterInfo[] parameterInfos) =>
